@@ -2,6 +2,9 @@ export enum StorageEnum {
   UserInfo = 'userInfo',
   Token = 'token',
   RefreshToken = 'refreshToken',
+  UserToken = 'userToken',
+  Settings = 'settings',
+  I18N = 'i18nextLng',
 }
 
 export const getItem = <T>(key: StorageEnum): T | null => {

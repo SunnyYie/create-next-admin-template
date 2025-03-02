@@ -4,13 +4,16 @@ import { useSettingActions, useSettings } from '../../store/theme-setting'
 import { type CSSProperties, useState } from 'react'
 import { MdCircle } from 'react-icons/md'
 import screenfull from 'screenfull'
-import { m } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { ThemeColorPresets, ThemeLayout, ThemeMode } from '../../store/type'
 import { IconButton, SvgIcon } from '../../components/icon'
 import { cn } from '../../utils'
 import { presetsColors } from '../../theme/tokens/color'
 import { FontFamilyPreset } from '../../theme/tokens/typography'
-// import { varHover } from "@/components/animate/variants/action";
+
+import CyanBlur from '@/assets/images/background/cyan-blur.png'
+import RedBlur from '@/assets/images/background/red-blur.png'
+import { themeVars } from '../../theme/theme.css'
 
 export default function SettingButton() {
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -94,10 +97,9 @@ export default function SettingButton() {
 
   const style: CSSProperties = {
     backdropFilter: 'blur(20px)',
-    // backgroundImage: `url("${CyanBlur}"), url("${RedBlur}")`,
+    backgroundImage: `url("${CyanBlur}"), url("${RedBlur}")`,
     backgroundRepeat: 'no-repeat, no-repeat',
-    // backgroundColor: `rgba(${themeVars.colors.background.paperChannel}, 0.9)`,
-    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    backgroundColor: `rgba(${themeVars.colors.background.paperChannel}, 0.9)`,
     backgroundPosition: 'right top, left bottom',
     backgroundSize: '50, 50%',
   }
@@ -111,12 +113,14 @@ export default function SettingButton() {
   }
 
   const layoutBackground = (layout: ThemeLayout) =>
-    themeLayout === layout ? `linear-gradient(135deg, black  0%, blue 100%)` : 'bg-gray-500'
+    themeLayout === layout
+      ? `linear-gradient(135deg, ${themeVars.colors.background.neutral} 0%, ${themeVars.colors.palette.primary.default} 100%)`
+      : themeVars.colors.palette.gray[500]
 
   return (
     <>
       <div className="flex items-center justify-center">
-        <m.div
+        <motion.div
           animate={{
             rotate: [0, drawerOpen ? 0 : 360],
           }}
@@ -128,17 +132,17 @@ export default function SettingButton() {
           whileTap="tap"
           whileHover="hover"
           variants={{
-            tap: { scale: 0.9 },
-            hover: { scale: 1.1 },
+            tap: { scale: 1.05 },
+            hover: { scale: 0.97 },
           }}
           onClick={() => setDrawerOpen(true)}
         >
           <IconButton className="h-10 w-10">
             <SvgIcon icon="ic-setting" size="24" />
           </IconButton>
-        </m.div>
+        </motion.div>
       </div>
-      
+
       <Drawer
         placement="right"
         title="Settings"
@@ -162,7 +166,7 @@ export default function SettingButton() {
                 <>
                   <SvgIcon
                     icon="ic-settings-exit-fullscreen"
-                    // color={themeVars.colors.palette.primary.default}
+                    color={themeVars.colors.palette.primary.default}
                     className="!m-0"
                   />
                   <span className="ml-2">Exit FullScreen</span>
@@ -189,7 +193,7 @@ export default function SettingButton() {
                 <SvgIcon
                   icon="ic-settings-mode-sun"
                   size="24"
-                  // color={themeMode === ThemeMode.Light ? themeVars.colors.palette.primary.default : ''}
+                  color={themeMode === ThemeMode.Light ? themeVars.colors.palette.primary.default : ''}
                 />
               </Card>
               <Card
@@ -199,7 +203,7 @@ export default function SettingButton() {
                 <SvgIcon
                   icon="ic-settings-mode-moon"
                   size="24"
-                  // color={themeMode === ThemeMode.Dark ? themeVars.colors.palette.primary.default : ''}
+                  color={themeMode === ThemeMode.Dark ? themeVars.colors.palette.primary.default : ''}
                 />
               </Card>
             </div>
@@ -360,7 +364,7 @@ export default function SettingButton() {
                 <div
                   className="flex w-full items-center justify-between"
                   style={{
-                    // color: themeVars.colors.palette.primary.default,
+                    color: themeVars.colors.palette.primary.default,
                     transition: 'width 300ms 0ms',
                   }}
                 >

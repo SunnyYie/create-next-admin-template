@@ -4,7 +4,13 @@ import { StrictMode, Suspense } from 'react'
 // @ts-ignore
 import worker from './mock'
 import App from './App.tsx'
+
+import 'virtual:svg-icons-register'
+
 import './index.css'
+import './theme/theme.css'
+
+import './locales/i18n'
 
 // 修复 antd 5 的兼容性问题
 import '@ant-design/v5-patch-for-react-19'
