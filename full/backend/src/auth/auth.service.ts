@@ -27,7 +27,7 @@ export class AuthService {
       data: {
         email,
         password: hashedPassword,
-        roleId: '1',
+        roleId: '2',
       },
     });
 

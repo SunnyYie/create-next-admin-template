@@ -17,10 +17,12 @@ function LoginForm() {
 
   if (loginState !== LoginStateEnum.LOGIN) return null
 
-  const handleFinish = async ({ email, password }: SignInReq) => {
+  const handleFinish = async ({ username, password }: SignInReq) => {
+    console.log('Submitted values:', username, password)
+
     setLoading(true)
     try {
-      await signIn({ email, password })
+      await signIn({ username, password })
     } finally {
       setLoading(false)
     }
@@ -32,9 +34,9 @@ function LoginForm() {
         name="login"
         size="large"
         initialValues={{
-          remember: true,
-          username: DEFAULT_USER.username,
-          password: DEFAULT_USER.password,
+          remember: false,
+          // username: DEFAULT_USER.username,
+          // password: DEFAULT_USER.password,
         }}
         onFinish={handleFinish}
       >

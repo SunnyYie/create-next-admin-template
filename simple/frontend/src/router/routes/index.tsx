@@ -15,8 +15,6 @@ const PAGE_NOT_FOUND_ROUTE: AppRouteObject = {
   element: <Navigate to="/404" replace />,
 }
 const menuModuleRoutes = getRoutesFromModules()
-console.log(menuModuleRoutes);
-
 
 export const routes: AppRouteObject[] = [
   {

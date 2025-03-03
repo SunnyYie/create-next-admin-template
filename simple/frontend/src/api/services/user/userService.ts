@@ -3,7 +3,7 @@ import apiClient from "../../apiClient"
 
 
 export interface SignInReq {
-  email: string
+  username: string
   password: string
 }
 

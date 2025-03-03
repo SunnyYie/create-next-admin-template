@@ -4,9 +4,9 @@ import { faker } from "@faker-js/faker";
 import { USER_LIST } from "../assets";
 
 const signIn = http.post(`/api${UserApi.SignIn}`, async ({ request }) => {
-	const { email, password } = await request.json();
+	const { username, password } = await request.json();
 
-	const user = USER_LIST.find((item) => item.username === email);
+	const user = USER_LIST.find((item) => item.username === username);
 
 	if (!user || user.password !== password) {
 		return HttpResponse.json({
