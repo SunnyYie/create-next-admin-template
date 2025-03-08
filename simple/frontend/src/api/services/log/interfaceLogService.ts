@@ -1,5 +1,5 @@
-import { InterfaceLog } from '../../../pages/log/type'
-import apiClient from '../../apiClient'
+import { InterfaceLog } from '@/pages/log/type'
+import apiClient from '@/api/apiClient'
 
 export enum IntefaceLogApi {
   GetAllInterfaceLogs = 'log/getInterfaceLogs',

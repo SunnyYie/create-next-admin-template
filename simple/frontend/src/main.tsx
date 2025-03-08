@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import ProgressBar from './components/progress-bar/index.tsx'
 import { createRoot } from 'react-dom/client'
 import { StrictMode, Suspense } from 'react'
 // @ts-ignore
@@ -22,6 +23,7 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryClientProvider client={new QueryClient()}>
       <Suspense>
+        <ProgressBar />
         <App />
       </Suspense>
     </QueryClientProvider>

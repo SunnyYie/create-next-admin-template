@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router'
-import { Iconify } from './icon'
+import { Iconify } from '.'
 
 interface Props {
   size?: number | string

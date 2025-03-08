@@ -1,7 +1,7 @@
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 import { useSettings } from '../../../store/theme-setting'
 import { HEADER_HEIGHT } from '../../config'
-import Logo from '../../../components/logo'
+import Logo from '../../../components/icon/logo'
 import { ThemeLayout } from './type'
 import { cn } from '../../../utils'
 

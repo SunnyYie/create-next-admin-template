@@ -1,6 +1,6 @@
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
-import tailwindcss from '@tailwindcss/vite'
+import tailwindcss from '@tailwindcss/vite/dist/index.mjs'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 import path from 'path'
@@ -24,7 +24,7 @@ export default defineConfig({
   // 配置别名
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src'),
+      '@': path.resolve(__dirname, './src'),
     },
   },
 
