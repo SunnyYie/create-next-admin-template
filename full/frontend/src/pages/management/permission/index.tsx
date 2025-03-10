@@ -1,17 +1,18 @@
-import permissionService from '../../../api/services/management/permissionService'
+import { ExclamationCircleOutlined } from '@ant-design/icons'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import PermissionTypeTag from '../../../components/tag/permission-type-tag'
-import useToastConfirm from '../../../components/toast/useToastConfirm'
-import { Permission, PermissionType } from '../../../router/type'
+import { Button, Space, Table, message } from 'antd'
+import { useState } from 'react'
+import { Navigate } from 'react-router'
+import permissionService from '../../../api/services/management/permissionService'
+import AuthGuard from '../../../components/auth/authGuard'
 import CircleLoading from '../../../components/circle-loading'
 import CombineSearch from '../../../components/combine-search'
-import { ExclamationCircleOutlined } from '@ant-design/icons'
-import PermissionModal from './components/permissionModal'
-import AuthGuard from '../../../components/auth/authGuard'
-import { Button, message, Space, Table } from 'antd'
+import PermissionTypeTag from '../../../components/tag/permission-type-tag'
 import RoleTag from '../../../components/tag/role-tag'
-import { Navigate } from 'react-router'
-import { useState } from 'react'
+import useToastConfirm from '../../../components/toast/useToastConfirm'
+
+import PermissionModal from './components/permissionModal'
+import { Permission, PermissionType } from '@/types/permission'
 
 export type SearchParams = {
   name?: string
@@ -112,7 +113,7 @@ export default function PermissionPage() {
       } else {
         // 添加新权限
         const { roleId } = values
-        delete values.roleId
+        values.roleId = undefined
 
         await createPermissionMutation.mutateAsync({ roleId: String(roleId!), permissionData: [values] })
         message.success('新权限添加成功')

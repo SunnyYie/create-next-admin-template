@@ -1,5 +1,5 @@
-import { StorageEnum, ThemeColorPresets, ThemeLayout, ThemeMode } from './type'
 import { FontFamilyPreset, typographyTokens } from '../theme/tokens/typography'
+import { StorageEnum, ThemeColorPresets, ThemeLayout, ThemeMode } from './type'
 import { createJSONStorage, persist } from 'zustand/middleware'
 import { create } from 'zustand'
 
@@ -17,7 +17,6 @@ type SettingsType = {
 }
 type SettingStore = {
   settings: SettingsType
-  // 使用 actions 命名空间来存放所有的 action
   actions: {
     setSettings: (settings: SettingsType) => void
     clearSettings: () => void

@@ -1,15 +1,15 @@
 export type InterfaceLog = {
-  id: string
-  method: string
-  url: string
+	id: string;
+	method: string;
+	url: string;
 
-  params?: string
-  status?: number
-  userAgent?: string
-  referrer?: string
-  os?: string
-  userId?: string
-  ip?: string
+	params?: string;
+	status?: number;
+	userAgent?: string;
+	referrer?: string;
+	os?: string;
+	userId?: string;
+	ip?: string;
 
-  createdAt?: string
-}
+	createdAt?: string;
+};

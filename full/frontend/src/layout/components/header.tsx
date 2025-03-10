@@ -1,27 +1,34 @@
-import { HEADER_HEIGHT, NAV_COLLAPSED_WIDTH, NAV_WIDTH } from '../config'
-import { useSettings } from '../../store/theme-setting'
-import { type CSSProperties, useState } from 'react'
-import { ThemeLayout } from './nav/type'
-import { cn } from '../../utils'
 import { Drawer } from 'antd'
+import { type CSSProperties, useState } from 'react'
 
-import { IconButton, Iconify, SvgIcon } from '../../components/icon'
+import { IconButton, Iconify, SvgIcon } from '@/components/icon'
+import LocalePicker from '@/components/locale-picker'
+import Logo from '@/components/logo'
 
-import AccountDropdown from './account-dropdown'
-import SettingButton from './setting-button'
+import AccountDropdown from '../components/account-dropdown'
+import BreadCrumb from '../components/bread-crumb'
+import NoticeButton from '../components/notice'
+import SearchBar from '../components/search-bar'
+import SettingButton from '../components/setting-button'
+
+import { themeVars } from '@/theme/theme.css'
+import { cn } from '@/utils'
+import { rgbAlpha } from '@/utils/theme'
 import NavVertical from './nav/nav-vertical'
-import Logo from '../../components/logo'
-import SearchBar from './search-bar'
-import NoticeButton from './notice'
-import BreadCrumb from './bread-crumb'
+import { useSettings } from '@/store/theme-setting'
+import { ThemeLayout } from '@/types/layout/type'
+import { HEADER_HEIGHT, NAV_COLLAPSED_WIDTH, NAV_WIDTH } from '../config'
 
 export default function Header() {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const { themeLayout, breadCrumb } = useSettings()
 
   const headerStyle: CSSProperties = {
-    borderBottom: themeLayout === ThemeLayout.Horizontal ? `1px dashed gray` : '',
-    backgroundColor: 'white',
+    borderBottom:
+      themeLayout === ThemeLayout.Horizontal
+        ? `1px dashed ${rgbAlpha(themeVars.colors.palette.gray['500Channel'], 0.2)}`
+        : '',
+    backgroundColor: rgbAlpha(themeVars.colors.background.defaultChannel, 0.9),
     width: '100%',
   }
 
@@ -60,7 +67,6 @@ export default function Header() {
           </div>
         </div>
       </header>
-
       <Drawer
         placement="left"
         onClose={() => setDrawerOpen(false)}

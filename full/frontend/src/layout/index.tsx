@@ -1,22 +1,22 @@
-import { type CSSProperties, Suspense, useMemo } from 'react'
-import { NAV_COLLAPSED_WIDTH, NAV_WIDTH } from './config'
-import CircleLoading from '../components/circle-loading'
-import { useSettings } from '../store/theme-setting'
-import { ThemeLayout } from './components/nav/type'
-import { cn } from '../utils'
 import { Layout } from 'antd'
+import { type CSSProperties, Suspense, useMemo } from 'react'
 
+import { cn } from '@/utils'
+
+import { NAV_COLLAPSED_WIDTH, NAV_WIDTH } from './config'
+import { useSettings } from '@/store/theme-setting'
+import { ThemeLayout } from '@/types/layout/type'
+import CircleLoading from '@/components/circle-loading'
 import Header from './components/header'
 import Main from './components/main'
 import Nav from './components/nav'
 
 function DashboardLayout() {
   const { themeLayout } = useSettings()
+
   const layoutClassName = useMemo(() => {
     return cn('flex h-screen overflow-hidden', themeLayout === ThemeLayout.Horizontal ? 'flex-col' : 'flex-row')
   }, [themeLayout])
-
-  // const mobileOrTablet = useMediaQuery(down('md'))
 
   const secondLayoutStyle: CSSProperties = {
     display: 'flex',

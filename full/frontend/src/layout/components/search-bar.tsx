@@ -1,35 +1,42 @@
-import { useFlattenedRoutes } from '../../router/hooks/use-flattened-routes'
-import { useBoolean, useEvent, useKeyPressEvent } from 'react-use'
 import { Empty, Input, type InputRef, Modal, Tag } from 'antd'
-import { CSSProperties, useEffect, useMemo, useRef, useState } from 'react'
-import { IconButton, SvgIcon } from '../../components/icon'
-import Scrollbar from '../../components/scroll-bar'
 import match from 'autosuggest-highlight/match'
 import parse from 'autosuggest-highlight/parse'
-// import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router'
+import { type CSSProperties, useEffect, useMemo, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useBoolean, useEvent, useKeyPressEvent } from 'react-use'
 import styled from 'styled-components'
 
+import { IconButton, SvgIcon } from '@/components/icon'
+import Scrollbar from '@/components/scroll-bar'
+import { useFlattenedRoutes, useRouter } from '@/router/hooks'
+import { themeVars } from '@/theme/theme.css'
+import { rgbAlpha } from '@/utils/theme'
+
 export default function SearchBar() {
-  // const { t } = useTranslation()
+  const { t } = useTranslation()
+  const { replace } = useRouter()
   const inputRef = useRef<InputRef>(null)
   const listRef = useRef<HTMLDivElement>(null)
-  const navigate = useNavigate()
+
+  const [search, toggle] = useBoolean(false)
 
   const flattenedRoutes = useFlattenedRoutes()
 
   const activeStyle: CSSProperties = {
-    border: `1px dashed #00A76F`,
-    backgroundColor: 'rgba(0, 167, 111, 0.1)',
+    border: `1px dashed ${themeVars.colors.palette.primary.default}`,
+    backgroundColor: rgbAlpha(themeVars.colors.palette.primary.defaultChannel, 0.1),
   }
 
-  const [search, toggle] = useBoolean(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedItemIndex, setSelectedItemIndex] = useState(0)
 
   const searchResult = useMemo(() => {
-    return flattenedRoutes.filter(item => item.key.toLowerCase().includes(searchQuery.toLowerCase()))
-  }, [searchQuery, flattenedRoutes])
+    return flattenedRoutes.filter(
+      item =>
+        t(item.label).toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.key.toLowerCase().includes(searchQuery.toLowerCase()),
+    )
+  }, [searchQuery, t, flattenedRoutes])
 
   // biome-ignore lint/correctness/useExhaustiveDependencies:  在搜索结果变化时重置选中索引
   useEffect(() => {
@@ -111,17 +118,17 @@ export default function SearchBar() {
   }
 
   const handleSelect = (key: string) => {
-    navigate(key)
+    replace(key)
     handleCancel()
   }
 
   return (
     <>
       <div className="flex items-center justify-center">
-        <IconButton className="h-8 rounded-xl bg-gray-100 py-2 text-xs font-bold" onClick={handleOpen}>
+        <IconButton className="h-8 rounded-xl bg-hover py-2 text-xs font-bold" onClick={handleOpen}>
           <div className="flex items-center justify-center gap-2">
             <SvgIcon icon="ic-search" size="20" />
-            <span className="flex h-6 items-center justify-center rounded-md bg-white px-1.5 font-bold text-gray-800">
+            <span className="flex h-6 items-center justify-center rounded-md bg-common-white px-1.5 font-bold text-gray-800">
               {' '}
               ⌘K{' '}
             </span>
@@ -153,7 +160,7 @@ export default function SearchBar() {
             autoFocus
             prefix={<SvgIcon icon="ic-search" size="20" />}
             suffix={
-              <IconButton className="h-6 rounded-md bg-gray-100 text-xs" onClick={handleCancel}>
+              <IconButton className="h-6 rounded-md bg-hover text-xs" onClick={handleCancel}>
                 Esc
               </IconButton>
             }
@@ -183,7 +190,7 @@ export default function SearchBar() {
           <Scrollbar>
             <div ref={listRef} className="py-2">
               {searchResult.map(({ key, label }, index) => {
-                const partsTitle = parse(label, match(label, searchQuery))
+                const partsTitle = parse(t(label), match(t(label), searchQuery))
                 const partsKey = parse(key, match(key, searchQuery))
                 return (
                   <StyledListItemButton
@@ -199,7 +206,9 @@ export default function SearchBar() {
                             <span
                               key={item.text}
                               style={{
-                                color: item.highlight ? 'black' : 'black',
+                                color: item.highlight
+                                  ? themeVars.colors.palette.primary.default
+                                  : themeVars.colors.text.primary,
                               }}
                             >
                               {item.text}
@@ -211,7 +220,9 @@ export default function SearchBar() {
                             <span
                               key={item.text}
                               style={{
-                                color: item.highlight ? 'black' : 'black',
+                                color: item.highlight
+                                  ? themeVars.colors.palette.primary.default
+                                  : themeVars.colors.text.secondary,
                               }}
                             >
                               {item.text}
@@ -238,5 +249,5 @@ const StyledListItemButton = styled.div`
   width: 100%;
   padding: 8px 16px;
   border-radius: 8px;
-  color: gray;
+  color: ${themeVars.colors.text.secondary};
 `

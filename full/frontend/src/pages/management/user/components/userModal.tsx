@@ -1,7 +1,7 @@
-import { Modal, Form, Input, Select } from 'antd'
-import { UserInfo } from '../../../../store/type'
-import { Role } from '../../../../router/type'
+import { Form, Input, Modal, Select } from 'antd'
 import { useEffect } from 'react'
+import type { UserInfo } from '../../../../store/type'
+import { Role } from '@/types/role'
 
 interface UserFormProps {
   visible: boolean

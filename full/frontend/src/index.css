@@ -1,1 +1,9 @@
 @import 'tailwindcss';
+@import 'simplebar-react/dist/simplebar.min.css';
+
+@theme {
+  --color-primary: #00a76f;
+  --color-text-disabled: #a0aec0;
+  --color-hover: rgba(0, 0, 0, 0.05);
+  --color-border: rgba(0, 0, 0, 0.05);
+}

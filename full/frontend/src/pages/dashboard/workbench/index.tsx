@@ -1,9 +1,9 @@
-import { useUserPermissionKeys } from '../../../store/user-setting'
-import AuthGuard from '../../../components/auth/authGuard'
-import { Button } from 'antd'
+import { Button } from "antd";
+import AuthGuard from "../../../components/auth/authGuard";
+import { useUserPermissionKeys } from "../../../store/user-setting";
 
 export default function Workbench() {
-  const permissionKeys = useUserPermissionKeys()
+	const permissionKeys = useUserPermissionKeys();
 
-  return <div>Workbench</div>
+	return <div>Workbench</div>;
 }

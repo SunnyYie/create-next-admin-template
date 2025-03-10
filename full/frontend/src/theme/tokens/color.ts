@@ -1,13 +1,5 @@
-// import { rgbAlpha } from '@/utils/theme'
-
-export enum ThemeColorPresets {
-  Default = 'default',
-  Cyan = 'cyan',
-  Purple = 'purple',
-  Blue = 'blue',
-  Orange = 'orange',
-  Red = 'red',
-}
+import { ThemeColorPresets } from '../../store/type'
+import { rgbAlpha } from '../../utils/theme'
 
 export const presetsColors = {
   [ThemeColorPresets.Default]: {
@@ -112,38 +104,39 @@ export const paletteColors = {
   },
 }
 
-// export const commonColors = {
-//   white: '#FFFFFF',
-//   black: '#000000',
-//   border: rgbAlpha(paletteColors.gray[500], 0.2),
-// }
+export const commonColors = {
+  white: '#FFFFFF',
+  black: '#000000',
+  border: rgbAlpha(paletteColors.gray[500], 0.2),
+}
 
-// export const lightColorTokens = {
-//   palette: paletteColors,
-//   common: commonColors,
-//   text: {
-//     primary: '#1C252E',
-//     secondary: '#637381',
-//     disabled: '#919EAB',
-//   },
-//   background: {
-//     default: '#FFFFFF',
-//     paper: '#FFFFFF',
-//     neutral: '#F4F6F8',
-//   },
-// }
+// 设置各种状态（成功，失败）等的颜色
+export const lightColorTokens = {
+  palette: paletteColors,
+  common: commonColors,
+  text: {
+    primary: '#1C252E',
+    secondary: '#637381',
+    disabled: '#919EAB',
+  },
+  background: {
+    default: '#FFFFFF',
+    paper: '#FFFFFF',
+    neutral: '#F4F6F8',
+  },
+}
 
-// export const darkColorTokens = {
-//   palette: paletteColors,
-//   common: commonColors,
-//   text: {
-//     primary: '#FFFFFF',
-//     secondary: '#919EAB',
-//     disabled: '#637381',
-//   },
-//   background: {
-//     default: '#161c24',
-//     paper: '#212b36',
-//     neutral: '#28323D',
-//   },
-// }
+export const darkColorTokens = {
+  palette: paletteColors,
+  common: commonColors,
+  text: {
+    primary: '#FFFFFF',
+    secondary: '#919EAB',
+    disabled: '#637381',
+  },
+  background: {
+    default: '#161c24',
+    paper: '#212b36',
+    neutral: '#28323D',
+  },
+}

@@ -1,7 +1,7 @@
-import { PermissionKey } from '../../../../store/type'
-import { Modal, Form, Input, Select } from 'antd'
-import { Role } from '../../../../router/type'
+import { Form, Input, Modal, Select } from 'antd'
 import { useEffect } from 'react'
+import type { PermissionKey } from '../../../../store/type'
+import { Role } from '@/types/role'
 
 interface PermissionModalProps {
   visible: boolean

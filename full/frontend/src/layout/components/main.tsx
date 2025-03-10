@@ -1,17 +1,20 @@
-import { useSettings } from '../../store/theme-setting'
+import { themeVars } from '@/theme/theme.css'
+import { cn } from '@/utils'
 import { Content } from 'antd/es/layout/layout'
-import { MULTI_TABS_HEIGHT } from '../config'
 import type { CSSProperties } from 'react'
-import { ThemeLayout } from './nav/type'
 import { Outlet } from 'react-router'
-import { cn } from '../../utils'
+import MultiTabs from './multi-tabs'
+import { MultiTabsProvider } from './multi-tabs/providers/multi-tabs-provider'
+import { MULTI_TABS_HEIGHT } from '../config'
+import { useSettings } from '@/store/theme-setting'
+import { ThemeLayout } from '@/types/layout/type'
 
 const Main = () => {
   const { themeStretch, themeLayout, multiTab } = useSettings()
 
   const mainStyle: CSSProperties = {
     paddingTop: multiTab ? MULTI_TABS_HEIGHT : 0,
-    // background: themeVars.colors.background.default,
+    background: themeVars.colors.background.default,
     transition: 'all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     width: '100%',
   }
@@ -26,13 +29,13 @@ const Main = () => {
             themeLayout === ThemeLayout.Horizontal ? 'flex-col' : 'flex-row',
           )}
         >
-          {/* {multiTab ? (
+          {multiTab ? (
             <MultiTabsProvider>
               <MultiTabs />
             </MultiTabsProvider>
-          ) : ( */}
-          <Outlet />
-          {/* )} */}
+          ) : (
+            <Outlet />
+          )}
         </div>
       </div>
     </Content>

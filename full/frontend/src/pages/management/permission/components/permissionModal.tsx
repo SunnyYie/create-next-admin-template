@@ -1,6 +1,7 @@
-import { Permission, PermissionType, Role } from '../../../../router/type'
-import { CheckboxGroupProps } from 'antd/es/checkbox'
-import { Modal, Form, Input, Radio, Select, InputNumber } from 'antd'
+import { Permission, PermissionType } from '@/types/permission'
+import { Role } from '@/types/role'
+import { Form, Input, InputNumber, Modal, Radio, Select } from 'antd'
+import type { CheckboxGroupProps } from 'antd/es/checkbox'
 import { useEffect } from 'react'
 
 interface PermissionModalProps {
@@ -34,8 +35,8 @@ export default function PermissionForm({ visible, onCancel, onSave, initialValue
     if (visible && initialValues) {
       form.setFieldsValue({
         ...initialValues,
-        type: String(initialValues.type == PermissionType.catalogue ? '0' : '1'),
-        roleId: initialValues.roles?.at(0)?.roleId == '1' ? Role.AMDIN : Role.USER,
+        type: String(initialValues.type === PermissionType.catalogue ? '0' : '1'),
+        roleId: initialValues.roles?.at(0)?.roleId === '1' ? Role.AMDIN : Role.USER,
       })
     } else {
       form.resetFields()
@@ -88,7 +89,7 @@ export default function PermissionForm({ visible, onCancel, onSave, initialValue
           <Form.Item shouldUpdate={(prevValues, currentValues) => prevValues.type !== currentValues.type}>
             {({ getFieldValue }) => {
               const type = getFieldValue('type')
-              if (type == String(PermissionType.CATALOGUE)) {
+              if (type === String(PermissionType.CATALOGUE)) {
                 return (
                   <>
                     <Form.Item name="order" label="排序" rules={[{ required: true, message: '请输入排序' }]}>
@@ -100,7 +101,7 @@ export default function PermissionForm({ visible, onCancel, onSave, initialValue
                   </>
                 )
               }
-              if (type == String(PermissionType.MENU)) {
+              if (type === String(PermissionType.MENU)) {
                 return (
                   <>
                     <Form.Item name="component" label="组件" rules={[{ required: true, message: '请输入组件' }]}>

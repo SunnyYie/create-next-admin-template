@@ -1,4 +1,4 @@
-import { Permission } from '../router/type'
+import { Permission } from '@/types/permission'
 
 export interface UserToken {
   accessToken?: string
