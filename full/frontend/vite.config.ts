@@ -1,3 +1,4 @@
+import { sentryVitePlugin } from '@sentry/vite-plugin'
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import tailwindcss from '@tailwindcss/vite'
@@ -19,6 +20,10 @@ export default defineConfig({
       // 指定symbolId格式
       symbolId: 'icon-[dir]-[name]',
     }),
+    sentryVitePlugin({
+      org: 'sunnyyee',
+      project: 'javascript-react',
+    }),
   ],
 
   // 配置别名
@@ -37,5 +42,9 @@ export default defineConfig({
         rewrite: path => path.replace(/^\/api/, ''),
       },
     },
+  },
+
+  build: {
+    sourcemap: true,
   },
 })
