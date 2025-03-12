@@ -1,10 +1,11 @@
+import userService, { type SignInReq } from "../api/services/userService";
+import { StorageEnum, UserInfo, UserToken } from "@/types/store/type";
+import { createJSONStorage, persist } from "zustand/middleware";
 import { useMutation } from "@tanstack/react-query";
+import { mergeRoutes } from "../router/utils";
 import { useNavigate } from "react-router";
 import { create } from "zustand";
-import { createJSONStorage, persist } from "zustand/middleware";
-import userService, { type SignInReq } from "../api/services/userService";
-import { mergeRoutes } from "../router/utils";
-import { StorageEnum, UserInfo, UserToken } from "@/types/store/type";
+import { toast } from "sonner";
 
 const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 
@@ -77,11 +78,11 @@ export const useSignIn = () => {
 				permissions,
 				flattenPermissions: user.permissions!,
 			});
-			navigatge(HOMEPAGE);
 
-			console.log("Sign in success!");
+			toast.success("登陆成功");
+			navigatge(HOMEPAGE);
 		} catch (err: any) {
-			console.error(err.message);
+			toast.error(err.message);
 		}
 	};
 

@@ -1,8 +1,8 @@
 import { ThemeColorPresets, ThemeLayout, ThemeMode } from '@/types/layout/type'
 import { FontFamilyPreset, typographyTokens } from '../theme/tokens/typography'
 import { createJSONStorage, persist } from 'zustand/middleware'
-import { create } from 'zustand'
 import { StorageEnum } from '@/types/store/type'
+import { create } from 'zustand'
 
 type SettingsType = {
   themeColorPresets: ThemeColorPresets
@@ -49,8 +49,8 @@ const useSettingStore = create<SettingStore>()(
       },
     }),
     {
-      name: StorageEnum.Settings, // name of the item in the storage (must be unique)
-      storage: createJSONStorage(() => localStorage), // (optional) by default, 'localStorage' is used
+      name: StorageEnum.Settings,
+      storage: createJSONStorage(() => localStorage),
       partialize: state => ({ [StorageEnum.Settings]: state.settings }),
     },
   ),

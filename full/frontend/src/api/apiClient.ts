@@ -1,5 +1,5 @@
 import axios, { type AxiosRequestConfig, type AxiosError, type AxiosResponse } from 'axios'
-import userStore, { useUserToken } from '../store/user-setting'
+import { useUserActions, useUserToken } from '../store/user-setting'
 import { type Result, ResultEnum } from './type'
 
 // 创建 axios 实例
@@ -44,7 +44,8 @@ axiosInstance.interceptors.response.use(
 
     const status = response?.status
     if (status === 401) {
-      userStore.getState().actions.clearUserInfoAndToken()
+      const { clearUserInfoAndToken } = useUserActions()
+      clearUserInfoAndToken()
     }
     return Promise.reject(error)
   },
