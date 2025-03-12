@@ -1,4 +1,4 @@
-import type { UserInfo, UserToken } from "../../store/type";
+import type { UserInfo, UserToken } from "@/store/type";
 import apiClient from "../apiClient";
 
 export interface SignInReq {

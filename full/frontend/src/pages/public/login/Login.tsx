@@ -1,28 +1,25 @@
-import SettingButton from '../../../layout/components/setting-button'
 import { LoginStateProvider } from './providers/LoginStateProvider'
-import Overlay from '@/assets/images/background/overlay.jpg'
-import RegisterForm from './RegisterForm'
-// import MobileForm from './MobileForm'
+import SettingButton from '@/layout/components/setting-button'
+import LocalePicker from '@/components/locale-picker'
 import LoginForm from './LoginForm'
-import ResetForm from './ResetForm'
 
-import { useUserToken } from '../../../store/user-setting'
-import { themeVars } from '../../../theme/theme.css'
+import Overlay from '@/assets/images/background/overlay.jpg'
+import { useUserToken } from '@/store/user-setting'
+import { themeVars } from '@/theme/theme.css'
+import { rgbAlpha } from '@/utils/theme'
+
 import { useTranslation } from 'react-i18next'
-import { rgbAlpha } from '../../../utils/theme'
 import { Layout, Typography } from 'antd'
 import { Navigate } from 'react-router'
-import LocalePicker from '../../../components/locale-picker'
 
 const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env
 
 function Login() {
   const { t } = useTranslation()
-  const token = useUserToken()
+  const { accessToken } = useUserToken()
 
   // 判断用户是否有权限
-  if (token.accessToken) {
-    // 如果有授权，则跳转到首页
+  if (accessToken) {
     return <Navigate to={HOMEPAGE} replace />
   }
 
@@ -46,9 +43,6 @@ function Login() {
       <div className="m-auto flex !h-screen w-full max-w-[480px] flex-col justify-center px-[16px] lg:px-[64px]">
         <LoginStateProvider>
           <LoginForm />
-          {/* <MobileForm /> */}
-          <RegisterForm />
-          <ResetForm />
         </LoginStateProvider>
       </div>
 
