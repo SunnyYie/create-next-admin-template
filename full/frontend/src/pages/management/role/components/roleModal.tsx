@@ -1,6 +1,6 @@
+import { Role } from "@/types/role";
 import { Form, Input, Modal } from "antd";
 import { useEffect } from "react";
-import type { Role } from "../../../../store/type";
 
 interface RoleFormProps {
 	visible: boolean;

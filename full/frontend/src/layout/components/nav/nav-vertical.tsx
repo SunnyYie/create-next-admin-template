@@ -6,10 +6,9 @@ import { usePermissionRoutes } from "../../../router/hooks/use-permission-routes
 import { useRouteToMenuFn } from "../../../router/hooks/use-route-to-menu";
 import { menuFilter } from "../../../router/utils";
 import { useSettingActions, useSettings } from "../../../store/theme-setting";
-import { ThemeMode } from "../../../store/type";
 import { NAV_WIDTH } from "../../config";
 import NavLogo from "./nav-logo";
-import { ThemeLayout } from "@/types/layout/type";
+import { ThemeLayout, ThemeMode } from "@/types/layout/type";
 
 const { Sider } = Layout;
 

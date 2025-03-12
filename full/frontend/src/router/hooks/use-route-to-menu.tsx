@@ -5,8 +5,8 @@ import { useCallback } from 'react'
 
 import type { AppRouteObject } from '@/types/router/type'
 import { useSettings } from '@/store/theme-setting'
-import { ThemeLayout } from '@/store/type'
 import { cn } from '@/utils'
+import { ThemeLayout } from '@/types/layout/type'
 
 type MenuItem = GetProp<MenuProps, 'items'>[number]
 

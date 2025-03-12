@@ -4,8 +4,9 @@ import { initReactI18next } from 'react-i18next'
 
 import en_US from './lang/en_US'
 import zh_CN from './lang/zh_CN'
-import { getStringItem, StorageEnum } from '../utils/storage'
+import { getStringItem } from '../utils/storage'
 import { LocalEnum } from '../components/locale-picker'
+import { StorageEnum } from '@/types/store/type'
 
 const defaultLng = getStringItem(StorageEnum.I18N) || (LocalEnum.en_US as string)
 i18n

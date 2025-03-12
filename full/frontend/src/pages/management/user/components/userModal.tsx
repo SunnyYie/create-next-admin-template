@@ -1,7 +1,8 @@
 import { Form, Input, Modal, Select } from 'antd'
 import { useEffect } from 'react'
-import type { UserInfo } from '../../../../store/type'
-import { Role } from '@/types/role'
+
+import { RoleEnum } from '@/types/role'
+import type { UserInfo } from '@/types/store/type'
 
 interface UserFormProps {
   visible: boolean
@@ -52,9 +53,9 @@ export default function UserModal({ visible, onCancel, onSave, initialValues }: 
           <Input />
         </Form.Item>
         <Form.Item name="roleId" label="角色" rules={[{ required: true, message: '请选择角色' }]}>
-          <Select defaultValue={Role.USER}>
-            <Select.Option value={Role.AMDIN}>管理员</Select.Option>
-            <Select.Option value={Role.USER}>普通用户</Select.Option>
+          <Select defaultValue={RoleEnum.USER}>
+            <Select.Option value={RoleEnum.AMDIN}>管理员</Select.Option>
+            <Select.Option value={RoleEnum.USER}>普通用户</Select.Option>
           </Select>
         </Form.Item>
 

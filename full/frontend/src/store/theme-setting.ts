@@ -1,7 +1,8 @@
+import { ThemeColorPresets, ThemeLayout, ThemeMode } from '@/types/layout/type'
 import { FontFamilyPreset, typographyTokens } from '../theme/tokens/typography'
-import { StorageEnum, ThemeColorPresets, ThemeLayout, ThemeMode } from './type'
 import { createJSONStorage, persist } from 'zustand/middleware'
 import { create } from 'zustand'
+import { StorageEnum } from '@/types/store/type'
 
 type SettingsType = {
   themeColorPresets: ThemeColorPresets

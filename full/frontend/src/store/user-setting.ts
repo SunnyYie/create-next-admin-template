@@ -4,7 +4,7 @@ import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import userService, { type SignInReq } from "../api/services/userService";
 import { mergeRoutes } from "../router/utils";
-import { StorageEnum, type UserInfo, type UserToken } from "./type";
+import { StorageEnum, UserInfo, UserToken } from "@/types/store/type";
 
 const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
 
@@ -71,6 +71,7 @@ export const useSignIn = () => {
 
 			const permissions = mergeRoutes(user.permissions!);
 
+			// 返回的是扁平化的权限列表，存储扁平化和未扁平化的权限列表
 			setUserInfo({
 				...user,
 				permissions,

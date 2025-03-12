@@ -1,34 +1,47 @@
 export enum PermissionType {
-	CATALOGUE = 0,
-	MENU = 1,
-	BUTTON = 2,
-	catalogue = "CATALOGUE",
-	menu = "MENU",
-	button = "BUTTON",
+  CATALOGUE = 0,
+  MENU = 1,
+  BUTTON = 2,
+  catalogue = 'CATALOGUE',
+  menu = 'MENU',
+  button = 'BUTTON',
 }
 
 export interface PermissionRole {
-	id: string;
-	roleId: string;
-	permissionId: string;
+  id: string
+  roleId: string
+  permissionId: string
 }
 
 export interface Permission {
-	id: string;
-	parentId: string;
-	name: string;
-	label: string;
-	type: PermissionType;
-	route: string;
-	order?: number;
-	icon?: string;
-	component?: string;
-	hide?: boolean;
-	hideTab?: boolean;
-	frameSrc?: URL;
-	newFeature?: boolean;
-	children?: Permission[];
+  id: string
+  parentId: string
+  name: string
+  label: string
+  type: PermissionType
+  route: string
+  order?: number
+  icon?: string
+  component?: string
+  hide?: boolean
+  hideTab?: boolean
+  frameSrc?: URL
+  newFeature?: boolean
+  children?: Permission[]
 
-	roleId?: string;
-	roles?: PermissionRole[];
+  roleId?: string
+  roles?: PermissionRole[]
+}
+
+export interface RolePermissionKey {
+  id: string
+  roleId: string
+  permissionKeyId: string
+}
+export interface PermissionKey {
+  id: string
+  label: string
+  name: string
+  roleId?: string
+  RolePermissionKeys?: RolePermissionKey[]
 }

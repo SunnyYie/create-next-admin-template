@@ -1,5 +1,5 @@
-import type { Role } from "../../../store/type";
 import apiClient from "../../apiClient";
+import { Role } from "@/types/role";
 
 export enum UserApi {
 	GetAllRoles = "role/getRoles",

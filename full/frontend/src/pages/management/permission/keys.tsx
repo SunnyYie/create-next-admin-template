@@ -8,9 +8,9 @@ import AuthGuard from "../../../components/auth/authGuard";
 import CircleLoading from "../../../components/circle-loading";
 import CombineSearch from "../../../components/combine-search";
 import RoleTag from "../../../components/tag/role-tag";
-import type { PermissionKey } from "../../../store/type";
 // import useToastConfirm from '../../../components/toast/useToastConfirm'
 import PermissionKeyModal from "./components/permissionKeyModal";
+import { PermissionKey } from "@/types/permission";
 
 type SearchParams = {
 	name?: string;

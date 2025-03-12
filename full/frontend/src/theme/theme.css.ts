@@ -31,6 +31,13 @@ createGlobalTheme(":root.dark", themeVars, {
 	...baseThemeTokens,
 });
 
+/**
+ * Add color channel to the leaf object
+ * 添加颜色通道到叶子对象
+ * @param obj
+ * @example
+ * 
+ */
 function addColorChannels<T extends Record<string, any>>(obj: T): AddChannelToLeaf<T> {
 	const result: Record<string, any> = {};
 

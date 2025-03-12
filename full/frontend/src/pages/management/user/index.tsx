@@ -6,8 +6,8 @@ import { Navigate, useNavigate } from "react-router";
 import userService from "../../../api/services/userService";
 import AuthGuard from "../../../components/auth/authGuard";
 import CombineSearch from "../../../components/combine-search";
-import type { UserInfo } from "../../../store/type";
 import UserModal from "./components/userModal";
+import { UserInfo } from "@/types/store/type";
 
 const { confirm } = Modal;
 

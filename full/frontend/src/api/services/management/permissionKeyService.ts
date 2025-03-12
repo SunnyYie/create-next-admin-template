@@ -1,5 +1,5 @@
-import type { PermissionKey } from "../../../store/type";
-import apiClient from "../../apiClient";
+import { PermissionKey } from "@/types/permission";
+import apiClient from "@/api/apiClient";
 
 export enum UserApi {
 	GetAllPermissionKeys = "user/getPermissionKeysAll",

@@ -3,8 +3,8 @@ import { useSettings } from '../store/theme-setting'
 import { presetsColors } from './tokens/color'
 import type { UILibraryAdapter } from './type'
 import { layoutClass } from './layout.css'
-import { ThemeMode } from '../store/type'
 import { useEffect } from 'react'
+import { ThemeMode } from '@/types/layout/type'
 
 interface ThemeProviderProps {
   children: React.ReactNode

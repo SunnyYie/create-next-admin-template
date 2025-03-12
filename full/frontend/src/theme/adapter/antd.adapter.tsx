@@ -1,5 +1,5 @@
 import { darkColorTokens, lightColorTokens, presetsColors } from '../tokens/color'
-import { ThemeMode, type UILibraryAdapter } from '../type'
+import {  type UILibraryAdapter } from '../type'
 import { useSettings } from '../../store/theme-setting'
 import { lightShadowTokens } from '../tokens/shadow'
 import { darkShadowTokens } from '../tokens/shadow'
@@ -9,6 +9,7 @@ import { baseThemeTokens } from '../tokens/base'
 import { removePx } from '../../utils/theme'
 import type { ThemeConfig } from 'antd'
 import useLocale from '../../locales/use-locale'
+import { ThemeMode } from '@/types/layout/type'
 
 export const AntdAdapter: UILibraryAdapter = ({ mode, children }) => {
   const { language } = useLocale()

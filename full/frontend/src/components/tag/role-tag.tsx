@@ -1,6 +1,5 @@
+import { PermissionRole, RolePermissionKey } from "@/types/permission";
 import { Tag } from "antd";
-import type { RolePermissionKey } from "../../store/type";
-import type { PermissionRole } from "../../types/router/type";
 
 interface RoleTagProps {
 	role: PermissionRole | RolePermissionKey;

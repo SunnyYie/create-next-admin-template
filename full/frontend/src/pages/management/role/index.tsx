@@ -4,8 +4,8 @@ import { Button, Modal, Space, Table, message } from "antd";
 import { useState } from "react";
 import { Navigate } from "react-router";
 import roleService from "../../../api/services/management/roleService";
-import type { Role } from "../../../store/type";
 import RoleModal from "./components/roleModal";
+import { Role } from "@/types/role";
 
 const { confirm } = Modal;
 

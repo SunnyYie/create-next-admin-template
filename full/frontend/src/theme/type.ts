@@ -1,7 +1,4 @@
-export enum ThemeMode {
-  Light = 'light',
-  Dark = 'dark',
-}
+import { ThemeMode } from "@/types/layout/type"
 
 export const themeTokens = {
   colors: {

@@ -1,4 +1,4 @@
-import { ThemeColorPresets } from '../../store/type'
+import { ThemeColorPresets } from '@/types/layout/type'
 import { rgbAlpha } from '../../utils/theme'
 
 export const presetsColors = {

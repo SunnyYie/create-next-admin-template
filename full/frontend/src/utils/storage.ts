@@ -1,11 +1,4 @@
-export enum StorageEnum {
-  UserInfo = 'userInfo',
-  Token = 'token',
-  RefreshToken = 'refreshToken',
-  UserToken = 'userToken',
-  Settings = 'settings',
-  I18N = 'i18nextLng',
-}
+import { StorageEnum } from '@/types/store/type'
 
 export const getItem = <T>(key: StorageEnum): T | null => {
   let value = null

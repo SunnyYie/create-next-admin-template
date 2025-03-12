@@ -1,7 +1,7 @@
+import { PermissionKey } from '@/types/permission'
 import { Form, Input, Modal, Select } from 'antd'
+import { RoleEnum } from '@/types/role'
 import { useEffect } from 'react'
-import type { PermissionKey } from '../../../../store/type'
-import { Role } from '@/types/role'
 
 interface PermissionModalProps {
   visible: boolean
@@ -40,9 +40,9 @@ export default function PermissionKeyModal({ visible, onCancel, onSave, initialV
       <Form form={form} layout="vertical">
         {/* 关联角色 */}
         <Form.Item name="roleId" label="关联角色" rules={[{ required: true, message: '请选择关联角色' }]}>
-          <Select defaultValue={Role.USER}>
-            <Select.Option value={Role.AMDIN}>管理员</Select.Option>
-            <Select.Option value={Role.USER}>普通用户</Select.Option>
+          <Select defaultValue={RoleEnum.USER}>
+            <Select.Option value={RoleEnum.AMDIN}>管理员</Select.Option>
+            <Select.Option value={RoleEnum.USER}>普通用户</Select.Option>
           </Select>
         </Form.Item>
         <Form.Item name="label" label="权限标识" rules={[{ required: true, message: '请输入权限标识' }]}>

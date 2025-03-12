@@ -1,10 +1,11 @@
+import { ThemeMode } from '@/types/layout/type'
 import { useSettingActions, useSettings } from '../../store/theme-setting'
 import { themeVars } from '../theme.css'
 import { baseThemeTokens } from '../tokens/base'
 import { darkColorTokens, lightColorTokens, presetsColors } from '../tokens/color'
 import { darkShadowTokens, lightShadowTokens } from '../tokens/shadow'
 import { typographyTokens } from '../tokens/typography'
-import { ThemeMode } from '../type'
+
 
 export function useTheme() {
   const settings = useSettings()
