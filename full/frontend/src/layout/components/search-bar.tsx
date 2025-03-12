@@ -1,16 +1,16 @@
+import { type CSSProperties, useEffect, useMemo, useRef, useState } from 'react'
+import { useBoolean, useEvent, useKeyPressEvent } from 'react-use'
 import { Empty, Input, type InputRef, Modal, Tag } from 'antd'
+import { useFlattenedRoutes, useRouter } from '@/router/hooks'
 import match from 'autosuggest-highlight/match'
 import parse from 'autosuggest-highlight/parse'
-import { type CSSProperties, useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useBoolean, useEvent, useKeyPressEvent } from 'react-use'
+import { themeVars } from '@/theme/theme.css'
+import { rgbAlpha } from '@/utils/theme'
 import styled from 'styled-components'
 
 import { IconButton, SvgIcon } from '@/components/icon'
 import Scrollbar from '@/components/scroll-bar'
-import { useFlattenedRoutes, useRouter } from '@/router/hooks'
-import { themeVars } from '@/theme/theme.css'
-import { rgbAlpha } from '@/utils/theme'
 
 export default function SearchBar() {
   const { t } = useTranslation()

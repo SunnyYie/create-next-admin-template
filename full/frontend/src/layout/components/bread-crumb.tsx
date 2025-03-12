@@ -1,26 +1,22 @@
 import { Breadcrumb, type BreadcrumbProps, type GetProp } from "antd";
-import { useMemo } from "react";
 import { Link, useMatches } from "react-router";
-import { Iconify } from "../../components/icon";
-import { useFlattenedRoutes } from "../../router/hooks/use-flattened-routes";
-import { usePermissionRoutes } from "../../router/hooks/use-permission-routes";
-import { menuFilter } from "../../router/utils";
+import { useMemo } from "react";
+
+import { usePermissionRoutes } from "@/router/hooks/use-permission-routes";
+import { useFlattenedRoutes } from "@/router/hooks/use-flattened-routes";
+import { menuFilter } from "@/router/utils";
 
 type MenuItem = GetProp<BreadcrumbProps, "items">[number];
 
-/**
- * 动态面包屑解决方案：https://github.com/MinjieChang/myblog/issues/29
- */
 export default function BreadCrumb() {
-	// const { t } = useTranslation()
-	const matches = useMatches();
-	const flattenedRoutes = useFlattenedRoutes();
 	const permissionRoutes = usePermissionRoutes();
+	const flattenedRoutes = useFlattenedRoutes();
+	const matches = useMatches();
 
 	const breadCrumbs = useMemo(() => {
 		const menuRoutes = menuFilter(permissionRoutes);
 		const paths = matches.filter((item) => item.pathname !== "/").map((item) => item.pathname);
-
+		// 获取当前路径的路由数组
 		const pathRouteMetas = flattenedRoutes.filter((item) => paths.includes(item.key));
 
 		let currentMenuItems = [...menuRoutes];
@@ -28,10 +24,8 @@ export default function BreadCrumb() {
 		return pathRouteMetas.map((routeMeta): MenuItem => {
 			const { key, label } = routeMeta;
 
-			// Find current level menu items
+			// 获取当前路径的子菜单
 			const currentRoute = currentMenuItems.find((item) => item.meta?.key === key);
-
-			// Update menu items for next level
 			currentMenuItems = currentRoute?.children?.filter((item) => !item.meta?.hideMenu) ?? [];
 
 			return {
@@ -49,5 +43,5 @@ export default function BreadCrumb() {
 		});
 	}, [matches, flattenedRoutes, permissionRoutes]);
 
-	return <Breadcrumb items={breadCrumbs} className="!text-sm" separator={<Iconify icon="ph:dot-duotone" />} />;
+	return <Breadcrumb items={breadCrumbs} className="!text-sm" separator='/' />;
 }
