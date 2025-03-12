@@ -1,70 +1,71 @@
-import type { AppRouteObject } from "@/types/router/type";
-import { Suspense, lazy } from "react";
-import { ErrorBoundary } from "react-error-boundary";
-import { Navigate, Outlet, type RouteObject, createHashRouter } from "react-router";
-import { RouterProvider } from "react-router/dom";
-import { usePermissionRoutes } from "./hooks/use-permission-routes";
+import { Navigate, Outlet, type RouteObject, createHashRouter } from 'react-router'
+import { ErrorBoundary } from 'react-error-boundary'
+import { RouterProvider } from 'react-router/dom'
+import { Suspense, lazy } from 'react'
 
-import CircleLoading from "../components/circle-loading";
-import DashboardLayout from "../layout";
-import Error from "../pages/errors/PageError";
-import Login from "../pages/public/login/Login";
-import ProtectedRoute from "./components/protected-route";
+import { usePermissionRoutes } from './hooks/use-permission-routes'
+import type { AppRouteObject } from '@/types/router/type'
 
-const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env;
+import ProtectedRoute from './components/protected-route'
+import CircleLoading from '../components/circle-loading'
+import Login from '../pages/public/login/Login'
+import Error from '../pages/errors/PageError'
+import DashboardLayout from '../layout'
+
+const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env
 
 // 公共路由
 const PUBLIC_ROUTE: AppRouteObject = {
-	path: "/login",
-	element: (
-		<ErrorBoundary FallbackComponent={Error}>
-			<Login />
-		</ErrorBoundary>
-	),
-};
+  path: '/login',
+  element: (
+    <ErrorBoundary FallbackComponent={Error}>
+      <Login />
+    </ErrorBoundary>
+  ),
+}
 // 404
 const NO_MATCHED_ROUTE: AppRouteObject = {
-	path: "*",
-	element: <Navigate to="/404" replace />,
-};
+  path: '*',
+  element: <Navigate to="/404" replace />,
+}
 
 // error routes
-const Page403 = lazy(() => import("../pages/errors/Page403"));
-const Page404 = lazy(() => import("../pages/errors/Page404"));
-const Page500 = lazy(() => import("../pages/errors/Page500"));
-const PageError = lazy(() => import("../pages/errors/PageError"));
+const Page403 = lazy(() => import('../pages/errors/Page403'))
+const Page404 = lazy(() => import('../pages/errors/Page404'))
+const Page500 = lazy(() => import('../pages/errors/Page500'))
+const PageError = lazy(() => import('../pages/errors/PageError'))
 
 const ERROR_ROUTE: AppRouteObject = {
-	element: (
-		<ProtectedRoute>
-			<Suspense fallback={<CircleLoading />}>
-				<Outlet />
-			</Suspense>
-		</ProtectedRoute>
-	),
-	children: [
-		{ path: "403", element: <Page403 /> },
-		{ path: "404", element: <Page404 /> },
-		{ path: "500", element: <Page500 /> },
-		{ path: "error", element: <PageError /> },
-	],
-};
+  element: (
+    <ProtectedRoute>
+      <Suspense fallback={<CircleLoading />}>
+        <Outlet />
+      </Suspense>
+    </ProtectedRoute>
+  ),
+  children: [
+    { path: '403', element: <Page403 /> },
+    { path: '404', element: <Page404 /> },
+    { path: '500', element: <Page500 /> },
+    { path: 'error', element: <PageError /> },
+  ],
+}
 
 export default function Router() {
-	const permissionRoutes = usePermissionRoutes();
+  const permissionRoutes = usePermissionRoutes()
 
-	const PROTECTED_ROUTE: AppRouteObject = {
-		path: "/",
-		element: (
-			<ProtectedRoute>
-				<DashboardLayout />
-			</ProtectedRoute>
-		),
-		children: [{ index: true, element: <Navigate to={HOMEPAGE} replace /> }, ...permissionRoutes],
-	};
+  const PROTECTED_ROUTE: AppRouteObject = {
+    path: '/',
+    element: (
+      <ProtectedRoute>
+        <DashboardLayout />
+      </ProtectedRoute>
+    ),
+    children: [{ index: true, element: <Navigate to={HOMEPAGE} replace /> }, ...permissionRoutes],
+  }
 
-	const routes = [PUBLIC_ROUTE, PROTECTED_ROUTE, ERROR_ROUTE, NO_MATCHED_ROUTE] as RouteObject[];
-	const router = createHashRouter(routes);
+  const routes = [PUBLIC_ROUTE, PROTECTED_ROUTE, ERROR_ROUTE, NO_MATCHED_ROUTE] as RouteObject[]
+  const router = createHashRouter(routes)
 
-	return <RouterProvider router={router} />;
+  return <RouterProvider router={router} />
 }

@@ -1,18 +1,17 @@
-import { isEmpty } from 'ramda'
-import { useEffect, useState } from 'react'
 import { type Params, useMatches, useOutlet } from 'react-router'
-
 import { useFlattenedRoutes } from './use-flattened-routes'
+import { useEffect, useState } from 'react'
 import { useRouter } from './use-router'
+import { isEmpty } from 'ramda'
+
 import { RouteMeta } from '@/types/router/type'
 
-
 const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env
+
 /**
  * 返回当前路由Meta信息
  */
 export function useCurrentRouteMeta() {
-  // const pathname = usePathname();
   const { push } = useRouter()
 
   // 获取路由组件实例
@@ -21,7 +20,7 @@ export function useCurrentRouteMeta() {
   // 获取所有匹配的路由
   const matchs = useMatches()
 
-  // 获取拍平后的路由菜单
+  // 获取拍平后的菜单路由
   const flattenedRoutes = useFlattenedRoutes()
 
   const [currentRouteMeta, setCurrentRouteMeta] = useState<RouteMeta>()
@@ -54,7 +53,8 @@ export function useCurrentRouteMeta() {
 }
 
 /**
- * replace `user/:id`  to `/user/1234512345`
+ * 替换动态路由参数
+ * @example replace `user/:id`  to `/user/1234512345`
  */
 export const replaceDynamicParams = (menuKey: string, params: Params<string>) => {
   let replacedPathName = menuKey

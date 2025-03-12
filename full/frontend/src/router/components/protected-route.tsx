@@ -1,8 +1,9 @@
-import { useCallback, useEffect } from "react";
 import { ErrorBoundary } from "react-error-boundary";
+import { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router";
-import PageError from "../../pages/errors/PageError";
-import { useUserToken } from "../../store/user-setting";
+
+import { useUserToken } from "@/store/user-setting";
+import PageError from "@/pages/errors/PageError";
 
 export default function ProtectedRoute({ children }: { children: React.ReactNode }) {
 	const { accessToken } = useUserToken();

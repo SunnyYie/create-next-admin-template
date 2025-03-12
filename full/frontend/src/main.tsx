@@ -2,8 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import ProgressBar from './components/progress-bar/index.tsx'
 import { createRoot } from 'react-dom/client'
 import { StrictMode, Suspense } from 'react'
-// @ts-ignore
-import worker from './mock'
+
 import App from './App.tsx'
 
 import 'virtual:svg-icons-register'
