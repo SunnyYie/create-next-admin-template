@@ -1,20 +1,20 @@
 import { CloseOutlined, LeftOutlined, QuestionCircleOutlined, RightOutlined } from '@ant-design/icons'
 import { Button, Card, Drawer, Slider, Switch, Tooltip } from 'antd'
-import { useSettingActions, useSettings } from '../../store/theme-setting'
+import { IconButton, SvgIcon } from '@/components/icon'
 import { type CSSProperties, useState } from 'react'
 import { MdCircle } from 'react-icons/md'
-import screenfull from 'screenfull'
 import { motion } from 'framer-motion'
+import screenfull from 'screenfull'
 
-import { IconButton, SvgIcon } from '../../components/icon'
-import { cn } from '../../utils'
-import { presetsColors } from '../../theme/tokens/color'
-import { FontFamilyPreset } from '../../theme/tokens/typography'
+import { ThemeColorPresets, ThemeLayout, ThemeMode } from '@/types/layout/type'
+import { useSettingActions, useSettings } from '@/store/theme-setting'
+import { FontFamilyPreset } from '@/theme/tokens/typography'
+import { presetsColors } from '@/theme/tokens/color'
+import { themeVars } from '@/theme/theme.css'
+import { cn } from '@/utils'
 
 import CyanBlur from '@/assets/images/background/cyan-blur.png'
 import RedBlur from '@/assets/images/background/red-blur.png'
-import { themeVars } from '../../theme/theme.css'
-import { ThemeColorPresets, ThemeLayout, ThemeMode } from '@/types/layout/type'
 
 export default function SettingButton() {
   const [drawerOpen, setDrawerOpen] = useState(false)

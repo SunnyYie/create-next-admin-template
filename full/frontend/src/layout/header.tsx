@@ -13,10 +13,10 @@ import Logo from '@/components/logo'
 
 import AccountDropdown from './components/account-dropdown'
 import SettingButton from './components/setting-button'
+import NavVertical from './components/nav/nav-vertical'
 import BreadCrumb from './components/bread-crumb'
 import SearchBar from './components/search-bar'
 import NoticeButton from './components/notice'
-import NavVertical from './components/nav/nav-vertical'
 
 export default function Header() {
   const [drawerOpen, setDrawerOpen] = useState(false)

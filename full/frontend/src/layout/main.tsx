@@ -1,13 +1,14 @@
-import { themeVars } from '@/theme/theme.css'
-import { cn } from '@/utils'
-import { Content } from 'antd/es/layout/layout'
-import type { CSSProperties } from 'react'
-import { Outlet } from 'react-router'
-import MultiTabs from './multi-tabs'
-import { MultiTabsProvider } from './multi-tabs/providers/multi-tabs-provider'
-import { MULTI_TABS_HEIGHT } from '../config'
 import { useSettings } from '@/store/theme-setting'
 import { ThemeLayout } from '@/types/layout/type'
+import { themeVars } from '@/theme/theme.css'
+import { MULTI_TABS_HEIGHT } from './config'
+import type { CSSProperties } from 'react'
+import { Outlet } from 'react-router'
+import { cn } from '@/utils'
+
+import { MultiTabsProvider } from './components/multi-tabs/providers/multi-tabs-provider'
+import MultiTabs from './components/multi-tabs'
+import { Content } from 'antd/es/layout/layout'
 
 const Main = () => {
   const { themeStretch, themeLayout, multiTab } = useSettings()

@@ -1,8 +1,7 @@
-import { Dropdown } from 'antd'
-
-import type { MenuProps } from 'antd'
 import useLocale, { LANGUAGE_MAP } from '../locales/use-locale'
-import { IconButton, SvgIcon } from './icon'
+import type { MenuProps } from 'antd'
+import { SvgIcon } from './icon'
+import { Dropdown } from 'antd'
 
 export enum LocalEnum {
   en_US = 'en_US',
@@ -11,9 +10,6 @@ export enum LocalEnum {
 
 type Locale = keyof typeof LocalEnum
 
-/**
- * Locale Picker
- */
 export default function LocalePicker() {
   const { setLocale, locale } = useLocale()
 
@@ -31,9 +27,6 @@ export default function LocalePicker() {
       trigger={['click']}
       menu={{ items: localeList, onClick: e => setLocale(e.key as Locale) }}
     >
-      {/* <IconButton className="h-10 w-10 hover:scale-105">
-      </IconButton> */}
-
       <div className="h-10 w-10 hover:scale-105 flex cursor-pointer items-center justify-center rounded-full p-2 hover:bg-hover">
         <SvgIcon icon={`ic-locale_${locale}`} size="24" className="rounded-md" />
       </div>

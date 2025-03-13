@@ -33,7 +33,7 @@ export default function SearchBar() {
   const searchResult = useMemo(() => {
     return flattenedRoutes.filter(
       item =>
-        t(item.label).toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.label.toLowerCase().includes(searchQuery.toLowerCase()) ||
         item.key.toLowerCase().includes(searchQuery.toLowerCase()),
     )
   }, [searchQuery, t, flattenedRoutes])
@@ -42,14 +42,6 @@ export default function SearchBar() {
   useEffect(() => {
     setSelectedItemIndex(0)
   }, [searchResult.length])
-
-  const handleMetaK = (event: KeyboardEvent) => {
-    if (event.metaKey && event.key === 'k') {
-      // https://developer.mozilla.org/zh-CN/docs/Web/API/KeyboardEvent/metaKey
-      handleOpen()
-    }
-  }
-  useEvent('keydown', handleMetaK)
 
   useKeyPressEvent('ArrowUp', event => {
     if (!search) return
@@ -102,6 +94,7 @@ export default function SearchBar() {
     }
   }
 
+  // 滚动选中的项到视图中间
   const scrollSelectedItemIntoView = (index: number) => {
     if (listRef.current) {
       const selectedItem = listRef.current.children[index]
@@ -135,6 +128,7 @@ export default function SearchBar() {
           </div>
         </IconButton>
       </div>
+
       <Modal
         centered
         keyboard
@@ -192,6 +186,7 @@ export default function SearchBar() {
               {searchResult.map(({ key, label }, index) => {
                 const partsTitle = parse(t(label), match(t(label), searchQuery))
                 const partsKey = parse(key, match(key, searchQuery))
+                
                 return (
                   <StyledListItemButton
                     key={key}

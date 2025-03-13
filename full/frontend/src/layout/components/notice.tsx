@@ -1,7 +1,8 @@
-import { faker } from "@faker-js/faker";
 import { Badge, Button, Drawer, Space, Tabs, type TabsProps, Tag } from "antd";
 import { type CSSProperties, type ReactNode, useState } from "react";
-import { IconButton, Iconify, SvgIcon } from "../../components/icon";
+import { IconButton, Iconify, SvgIcon } from "@/components/icon";
+import { themeVars } from "@/theme/theme.css";
+import { faker } from "@faker-js/faker";
 
 export default function NoticeButton() {
 	const [drawerOpen, setDrawerOpen] = useState(false);
@@ -9,7 +10,6 @@ export default function NoticeButton() {
 
 	const style: CSSProperties = {
 		backdropFilter: "blur(20px)",
-		// backgroundImage: `url("${CyanBlur}"), url("${RedBlur}")`,
 		backgroundRepeat: "no-repeat, no-repeat",
 		backgroundColor: "rgba(255, 255, 255, 0.9)",
 		backgroundPosition: "right top, left bottom",
@@ -29,6 +29,7 @@ export default function NoticeButton() {
 					<Iconify icon="solar:bell-bing-bold-duotone" size={24} />
 				</Badge>
 			</IconButton>
+
 			<Drawer
 				placement="right"
 				title="Notifications"
@@ -54,7 +55,7 @@ export default function NoticeButton() {
 				}
 				footer={
 					<div
-						// style={{ color: themeVars.colors.text.primary }}
+						style={{ color: themeVars.colors.text.primary }}
 						className="flex h-10 w-full items-center justify-center font-semibold"
 					>
 						View All
@@ -116,7 +117,7 @@ function NoticeTab() {
 					<div>
 						<span className="font-medium">{faker.person.fullName()}</span>
 						<span className="text-xs font-light"> mentioned you in</span>
-						<span className="font-medium">Slash Admin</span>
+						<span className="font-medium">Next React Admin</span>
 					</div>
 					<span className="text-xs font-light opacity-60">1 days ago</span>
 					<div className="mt-2">
