@@ -12,6 +12,7 @@ import useLocale from '../../locales/use-locale'
 import { ThemeMode } from '@/types/layout/type'
 
 export const AntdAdapter: UILibraryAdapter = ({ mode, children }) => {
+  // 注册国际化配置
   const { language } = useLocale()
   const { themeColorPresets, fontFamily, fontSize } = useSettings()
 

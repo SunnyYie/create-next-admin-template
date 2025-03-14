@@ -1,8 +1,8 @@
+import type { Locale as AntdLocal } from 'antd/es/locale'
+import { useTranslation } from 'react-i18next'
 import en_US from 'antd/locale/en_US'
 import zh_CN from 'antd/locale/zh_CN'
-import { useTranslation } from 'react-i18next'
 
-import type { Locale as AntdLocal } from 'antd/es/locale'
 import { LocalEnum } from '../components/locale-picker'
 
 type Locale = keyof typeof LocalEnum

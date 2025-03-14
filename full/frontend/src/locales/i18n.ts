@@ -1,22 +1,18 @@
-import i18n from 'i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
 import { initReactI18next } from 'react-i18next'
+import i18n from 'i18next'
 
+import { LocalEnum } from '../components/locale-picker'
+import { getStringItem } from '../utils/storage'
+import { StorageEnum } from '@/types/store/type'
 import en_US from './lang/en_US'
 import zh_CN from './lang/zh_CN'
-import { getStringItem } from '../utils/storage'
-import { LocalEnum } from '../components/locale-picker'
-import { StorageEnum } from '@/types/store/type'
 
+// 获取语言配置
 const defaultLng = getStringItem(StorageEnum.I18N) || (LocalEnum.en_US as string)
 i18n
-  // detect user language
-  // learn more: https://github.com/i18next/i18next-browser-languageDetector
   .use(LanguageDetector)
-  // pass the i18n instance to react-i18next.
   .use(initReactI18next)
-  // init i18next
-  // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
     debug: true,
     lng: defaultLng, // localstorage -> i18nextLng: en_US
