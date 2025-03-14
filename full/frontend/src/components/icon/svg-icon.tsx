@@ -35,6 +35,7 @@ export default function SvgIcon({
 			aria-label={icon}
 		>
 			<title>{icon}</title>
+			{/* 通过vite插件将目录下的svg图片与symbolId联系在一起 */}
 			<use xlinkHref={symbolId} fill={color} />
 		</svg>
 	);
