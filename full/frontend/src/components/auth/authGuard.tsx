@@ -1,5 +1,5 @@
+import { useUserPermissionKeys } from "@/store/user-setting";
 import type { ReactNode } from "react";
-import { useUserPermissionKeys } from "../../store/user-setting";
 
 interface AuthGuardProps {
 	children: ReactNode;
